@@ -1,18 +1,13 @@
-#This Assembler Makefile is only for MacOS 64 using nasm
-#Defs
-NAME := libftasm.a
+#This Assembler Makefile is only for Unix/Linux 64 using nasm
+NAME := libasm.a
 AS := nasm
 AR := ar -rcs
 ASFLAGS := -f macho64
-
-#Sources
+RM := rm -rf
 SRCS := minbase.s
-
 #Generate objects
 OBJS := $(SRCS:.s=.o)
 
-#Remove
-RM := rm -rf
 
 #Default target
 all: $(NAME)
