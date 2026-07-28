@@ -1,18 +1,26 @@
 #This Assembler Makefile is only for Unix/Linux 64 using nasm
 NAME := libasm.a
+BLD_DIR := build/
+SRC_DIR := src/
 AS := nasm
-AR := ar -rcs
-ASFLAGS := -f macho64
+AR := ar
+ASFLAGS := -f elf64
+ARFLAGS := rcs
 RM := rm -rf
-SRCS := minbase.s
-#Generate objects
-OBJS := $(SRCS:.s=.o)
-
+LST_SRC := minbase.s
+OBJ := $(patsubst %.s, $(BLD_DIR)%.o, $(SRC))
+DEP := $(patsubst %.s, $(BLD_DIR)%.d, $(SRC))
+SRC := $(addprefix $(SRC_DIR), $(LST_SRC))
 
 #Default target
 all: $(NAME)
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	$(AR) $(ARFLAGS) $(OBJS) 
+
+-include $(DEP)
+$(BLD_DIR)%.o: %.s
+	mkdir -p $(shell dirname $@)
+	$(AS) $(ASFLAGS) -MD $(@:.o=.d) $< -o $@
 
 #Clean objects
 clean:
