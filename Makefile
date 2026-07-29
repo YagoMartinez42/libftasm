@@ -24,7 +24,7 @@ $(BLD_DIR)%.o: %.s
 
 #Clean objects
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(BLD_DIR)
 
 #Clean objects and library 
 fclean: clean

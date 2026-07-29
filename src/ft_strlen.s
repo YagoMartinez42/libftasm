@@ -8,7 +8,7 @@ ft_strlen:
     xor rax, rax
     jmp .loop
 .loop:
-    cmp BYTE [rdi + rax], 0
+    cmp [dil + rax], 0
     je .end_loop
     inc rax
     jmp .loop
