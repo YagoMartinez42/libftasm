@@ -6,10 +6,10 @@ section .text
 ; unsigned long	ft_strcpy(char *dest, const char *src)
 ft_strcpy:
     mov rax, rdi
-    jmp .loop
 .loop:
-	mov byte [rdi], [rsi]
-	cmp byte [rdi], 0
+	mov dl, [rsi]
+	mov [rdi], dl
+	test dl, dl
 	je .end_loop
 	inc rdi
 	inc rsi
