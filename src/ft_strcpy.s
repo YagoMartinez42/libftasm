@@ -8,11 +8,11 @@ ft_strcpy:
     mov rax, rdi
     jmp .loop
 .loop:
-	mov dil, sil
-	cmp dil, 0
+	mov byte [rdi], [rsi]
+	cmp byte [rdi], 0
 	je .end_loop
-	inc dil
-	inc sil
+	inc rdi
+	inc rsi
     jmp .loop
 .end_loop:
     ret
