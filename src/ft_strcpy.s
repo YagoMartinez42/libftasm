@@ -7,8 +7,8 @@ section .text
 ft_strcpy:
     mov rax, rdi
 .loop:
-	mov dl, [rsi]
-	mov [rdi], dl
+	movb dl, [rsi]
+	movb [rdi], dl
 	test dl, dl
 	je .end_loop
 	inc rdi

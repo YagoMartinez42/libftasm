@@ -7,7 +7,7 @@ section .text
 ft_strlen:
     xor rax, rax
 .loop:
-    cmp byte [rdi + rax], 0
+    cmpb [rdi + rax], 0
     je .end_loop
     inc rax
     jmp .loop
