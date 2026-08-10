@@ -15,6 +15,6 @@ ft_strcmp:
 	inc rax
     jmp .loop
 .end_loop:
-    sub dl, byte [rdi]
+    sub dl, byte [rdi + rax]
     mov rax, dl
     ret
