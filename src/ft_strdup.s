@@ -20,14 +20,14 @@ global ft_strdup
 section .text
 ; char* strdup(const char* s);
 ft_strdup:
-	push rdi
+	mov rbx, rdi
 	call ft_strlen
 	inc rax
 	mov rdi, rax
 	call malloc wrt ..plt
 	cmp rax, 0
     je .error
-	pull rsi
+	mov rsi, rbx
 	mov rdi, rax
 	call ft_strcpy
 	ret
