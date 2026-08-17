@@ -7,7 +7,11 @@ AR = ar
 ASFLAGS = -f elf64
 ARFLAGS = rcs
 RM = rm -rf
-LST_SRC = ft_strlen.s
+LST_SRC =	ft_read.s \
+			ft_strcmp.s \
+			ft_strcpy.s \
+			ft_strlen.s \
+			ft_write.s
 SRC = $(addprefix $(SRC_DIR), $(LST_SRC))
 OBJ = $(patsubst %.s, $(BLD_DIR)%.o, $(SRC))
 DEP = $(patsubst %.s, $(BLD_DIR)%.d, $(SRC))

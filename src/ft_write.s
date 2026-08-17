@@ -1,30 +1,33 @@
 ; ************************************************************************** ;
 ;                                                                            ;
 ;                                                        :::      ::::::::   ;
-;   ft_strcpy.s                                        :+:      :+:    :+:   ;
+;   ft_write.s                                         :+:      :+:    :+:   ;
 ;                                                    +:+ +:+         +:+     ;
 ;   By: samartin <samartin@student.42madrid.com>   #+#  +:+       +#+        ;
 ;                                                +#+#+#+#+#+   +#+           ;
-;   Created: 2026-07-24 12:10:30 by samartin          #+#    #+#             ;
-;   Updated: 2026-08-11 14:10:00 by samartin         ###   ########.fr       ;
+;   Created: 2026-08-11 11:30:35 by samartin          #+#    #+#             ;
+;   Updated: 2026-08-11 17:28:05 by samartin         ###   ########.fr       ;
 ;                                                                            ;
 ; ************************************************************************** ;
 
 bits 64
 
-global ft_strcpy
+extern __errno_location
+global ft_write
 
 section .text
-; unsigned long	ft_strcpy(char* dest, const char* src)
-ft_strcpy:
-	xor rcx, rcx
-    mov rax, rdi
-.loop:
-	mov byte dl, [rsi + rcx]
-	mov byte [rdi + rcx], dl
-	test dl, dl
-	je .end_loop
-	inc rcx
-    jmp .loop
-.end_loop:
+; ssize_t write(int fd, const void* buf, size_t count);
+ft_write:
+    mov rax, 1
+    syscall
+    test rax, rax
+    js .error
     ret
+.error
+	neg rax
+	mov rdi, rax
+	call __errno_location wrt ..plt
+	mov [rax], rdi
+	mov rax, -1
+	ret
+	
