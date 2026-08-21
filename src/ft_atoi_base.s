@@ -1,35 +1,23 @@
 ; ************************************************************************** ;
 ;                                                                            ;
 ;                                                        :::      ::::::::   ;
-;   ft_strdup.s                                        :+:      :+:    :+:   ;
+;   ft_atoi_base.s                                     :+:      :+:    :+:   ;
 ;                                                    +:+ +:+         +:+     ;
 ;   By: samartin <samartin@student.42madrid.com>   #+#  +:+       +#+        ;
 ;                                                +#+#+#+#+#+   +#+           ;
-;   Created: 2026-08-11 13:43:44 by samartin          #+#    #+#             ;
-;   Updated: 2026-08-11 17:27:04 by samartin         ###   ########.fr       ;
+;   Created: 2026-08-20 18:16:20 by samartin          #+#    #+#             ;
+;   Updated: 2026-08-20 18:16:20 by samartin         ###   ########.fr       ;
 ;                                                                            ;
 ; ************************************************************************** ;
 
 bits 64
 
 extern ft_strlen
-extern ft_strcpy
-extern malloc
-global ft_strdup
+global ft_atoi_base
 
 section .text
-; char* strdup(const char* s);
-ft_strdup:
-	push rdi
-	call ft_strlen
-	inc rax
-	mov rdi, rax
-	call malloc wrt ..plt
-	cmp rax, 0
-    je .error
-	mov rdi, rax
-	pop rsi
-	call ft_strcpy
+;int ft_atoi_base(char* str, char* base);
+ft_atoi_base:
 	ret
 .error:
 	ret

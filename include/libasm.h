@@ -13,6 +13,7 @@
 #ifndef LIBASM_H
 # define LIBASM_H
 
+int				ft_atoi_base(char* str, char* base);
 long			ft_read(int fd, void* buf, unsigned long count);
 int				ft_strcmp(const char* s1, const char* s2);
 char*			ft_strcpy(char* dest, const char* src);
